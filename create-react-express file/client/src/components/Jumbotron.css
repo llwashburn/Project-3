@@ -1,0 +1,19 @@
+.jumbotron {
+    margin-top: 0%;
+    background-image: url(../components/images/shoes.jpg);
+    height: 375px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    
+
+    
+}
+
+h1.display-3 {
+    font: white;
+
+}
+p.leaad{
+    font: teal;
+}
