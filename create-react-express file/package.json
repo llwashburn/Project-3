@@ -14,10 +14,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
+    "concurrently": "^3.5.0"
   },
   "dependencies": {
-    "express": "^4.15.4"
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-messages": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.6.4",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
   }
 }

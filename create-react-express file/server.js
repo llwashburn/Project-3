@@ -1,19 +1,29 @@
+// //Root of Server
+
 const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
 const app = express();
+const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
+const path = require("path");
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+const routes = require("./routes")
 
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
-app.listen(PORT, function() {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+const PORT = process.env.PORT || 3001;
+
+// //View engine setup
+// app.engine("handlebars", exphs());
+// app.set("view engine", "handlebars");
+
+//Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//let express know static folder
+app.use("/public", express.static(path.join(__dirname, "public")));
+
+app.use(routes);
+
+app.listen(PORT, function(){
+    console.log('Server started on Port '+PORT)
 });

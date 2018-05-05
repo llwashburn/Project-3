@@ -1,50 +1,82 @@
+import React, { Component } from "react";
+import API from "../utils/API";
+import "./index.css";
 
-// import React, { Component } from "react";
-// import Field from "./Field";
-// import Button from "./Button";
+class Form extends Component {
+  state = {
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  };
 
+  handleInputChange = event => {
+    // Getting the value and name of the input which triggered the change
+    let value = event.target.value;
+    const name = event.target.name;
+  };
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (!this.state.name) {
+      alert("All fields must be completed");
+    }
+    console.log(this.state);
+    this.setState({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
+  };
 
-// class Form extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             name: "",
-//             email: "",
-//             message: "",
-//         };
-//         //this refers to Form when using updateField
-//         this.updateField = this.updateField.bind(this)
-//     }
-// //field could be name, email or message
-// //value = user input data
-//     updateField(field, value) {
-//         this.setState({ [field]: value});
-//     }
+  componentDidMount() {
+    this.loadForm();
+  }
 
-//     render () {
-//         return (
-//             <div>
-//                 {/* Name field */}
-//                 <Field 
-//                 label="Name"
-//                 onChange={(event) => this.updateField("name", event.target.value)} value={this.state.name}/>
-//                 {/* Email field */}
-//                 <Field 
-//                 label="Email"
-//                 onChange={(event) => this.updateField("email", event.target.value)} value={this.state.email}/>
-//                 {/* Message textarea */}
-//                 <Field 
-//                 label="Message"
-//                 onChange={(event)=> this.updateField("message", event.target.value)} textarea = {true} value={this.state.message}/>
-            
-                
-//                 {/* Submit button  */}
-//                 <Button formsValues={this.state} email="llwashburn@gmail.com"></Button>
-//             </div>
-//         );
-//     }
-        
-//         }
-//         export default Form;
-    
+  loadForm = () => {
+    API.getForm()
+      .then(res => this.setState({ form: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  render() {
+    return  <div>
+      <p>Hello {this.state.name}</p>
+      <form className="form">
+        <input
+          value={this.state.name}
+          name="name"
+          onChange={this.handleInputChange}
+          type="text"
+          placeholder="Name"
+        />
+        <input
+          value={this.state.email}
+          name="email"
+          onChange={this.handleInputChange}
+          type="text"
+          placeholder="Email"
+        />
+        <input
+          value={this.state.subject}
+          name="subject"
+          onChange={this.handleInputChange}
+          type="text"
+          placeholder="Subject"
+        />
+        <input
+          value={this.state.message}
+          name="message"
+          onChange={this.handleInputChange}
+          type="text"
+          placeholder="Message"
+        />
+
+        <button onClick={this.handleFormSubmit}>Submit</button>
+      </form>
+    </div>;
+  }
+}
+
+export default Form;

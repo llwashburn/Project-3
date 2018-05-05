@@ -1,28 +1,41 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
-// import Jumbotron from "../components/Jumbotron.js";
-// import Form from "../components/Form.js";
-// import Field from "../components/Field.js";
-// import Button from "../components/Button.js";
+import Form from "../components/Form.js";
+import {PageHeader} from "react-bootstrap";
+
 
 
 class Contact extends Component {
-    render() {
+
+  state= {
+    fields: {}
+  };
+    
+  onSubmit = fields => {
+    console.log("Contact comp got: ", fields);
+  }
+  
+  render() {
     return <div>
-        <Navbar/>
-        {/* <Jumbotron title="Contact" subtitle=""/> */}
+        <Navbar />
         <div className="container">
-          <h2>Fuel 4 Life</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            aliquet diam tortor, id consequat mauris ullamcorper eu. Orci
-            varius natoque penatibus et magnis dis parturient montes,
-            nascetur ridiculus mus. Pellentesque et dui id justo finibus
-          </p>
+          <PageHeader>
+            Contact Me
+          </PageHeader>
+          <div>
+            <p>
+              If you would like to know more about Fuel 4 Life please send me an message through email or social media.
+              I will get back to you as soon as I can!
+              Thank you!
+            </p>
+          </div>
+          <div>
+            <Form />
+          </div>
         </div>
-        <Footer/>
-      </div>
+        <Footer />
+      </div>;
     }
 }
 
