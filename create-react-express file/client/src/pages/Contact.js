@@ -8,13 +8,13 @@ import {PageHeader} from "react-bootstrap";
 
 class Contact extends Component {
 
-  state= {
-    fields: {}
-  };
-    
-  onSubmit = fields => {
-    console.log("Contact comp got: ", fields);
-  }
+//  state = {
+//    fields: {}
+//  };
+
+//  onSubmit = fields => {
+//    console.log("Contact comp got: ", fields);
+//  }
   
   render() {
     return <div>
@@ -26,7 +26,7 @@ class Contact extends Component {
           <div>
             <p>
               If you would like to know more about Fuel 4 Life please send me an message through email or social media.
-              I will get back to you as soon as I can!
+              I will get back to you as soon as I can.
               Thank you!
             </p>
           </div>

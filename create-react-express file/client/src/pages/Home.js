@@ -15,7 +15,7 @@ class Home extends Component {
         <div className="container">
           <div className ="row" >
             <div className = "welcome col-md-12">
-              <div class ="well">
+              <div className ="well">
                 <h3>Welcome!</h3>
                   <p>
                    Fuel 4 Life is a group of dedicated women that come together

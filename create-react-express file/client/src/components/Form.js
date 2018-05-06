@@ -10,65 +10,78 @@ class Form extends Component {
     message: ""
   };
 
+  // componentDidMount() {
+  //   this.loadForm();
+  // }
+
+  // loadForm = () => {
+  //   API.getForm()
+  //     .then(res => this.setState({form: res.data, 
+  //         name: "",
+  //         email: "",
+  //         subject: "",
+  //         message: ""
+  //     })
+  //   )
+  //     .catch(err => console.log(err));
+  // };
+
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
-    let value = event.target.value;
-    const name = event.target.name;
+    const{name, value} = event.target;
+    this.setState({
+      [name]:value
+    });
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (!this.state.name) {
+    if (!this.state.name || !this.state.email || !this.state.subject || !this.state.message) {
       alert("All fields must be completed");
     }
-    console.log(this.state);
-    this.setState({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
-  };
+    //console.log(this.state);
+    API.sendForm(this.state)
+      .then(res => {
+        this.setState({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        });
+      })
 
-  componentDidMount() {
-    this.loadForm();
-  }
-
-  loadForm = () => {
-    API.getForm()
-      .then(res => this.setState({ form: res.data }))
-      .catch(err => console.log(err));
+    
   };
 
   render() {
     return  <div>
-      <p>Hello {this.state.name}</p>
+      {/* <p>Contact form {this.state.name}</p> */}
       <form className="form">
         <input
           value={this.state.name}
-          name="name"
           onChange={this.handleInputChange}
+          name = "name"
           type="text"
           placeholder="Name"
         />
         <input
           value={this.state.email}
-          name="email"
           onChange={this.handleInputChange}
+          name = "email"
           type="text"
           placeholder="Email"
         />
         <input
           value={this.state.subject}
-          name="subject"
           onChange={this.handleInputChange}
+          name = "subject"
           type="text"
           placeholder="Subject"
         />
         <input
           value={this.state.message}
-          name="message"
           onChange={this.handleInputChange}
+          name = "message"
           type="text"
           placeholder="Message"
         />

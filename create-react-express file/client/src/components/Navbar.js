@@ -14,8 +14,6 @@ class Navbar extends Component {
                 <Link className="navbar-header" to="/">
                 Fuel 4 Life
                 </Link>
-                
-               
 
                 <ul className="nav navbar-nav">
                   <li className={window.location.pathname === "/about" ? "active" : ""}>
